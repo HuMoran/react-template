@@ -18,6 +18,9 @@ import {
   Button,
 } from 'antd';
 
+import Home from '../../pages/Home';
+import About from '../../pages/About';
+
 import './index.less';
 
 const { SubMenu } = Menu;
@@ -72,8 +75,13 @@ function BaseHeader() {
         </span>
       </Header>
       <Layout>
-        <Sider collapsible collapsed={collapsed} onCollapse={() => setCollapsed(!collapsed)}>
-          <div className="logo" />
+        <Sider
+          // collapsedWidth={64} there has a bug
+          theme="light"
+          collapsible
+          collapsed={collapsed}
+          onCollapse={() => setCollapsed(!collapsed)}
+        >
           <Menu defaultSelectedKeys={['1']} mode="inline">
             <Menu.Item key="1">
               <Icon type="pie-chart" />
@@ -128,7 +136,7 @@ function BaseHeader() {
               minHeight: 280,
             }}
           >
-          Content
+            <Home></Home>
           </Content>
         </Layout>
       </Layout>
