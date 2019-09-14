@@ -9,19 +9,25 @@
  * -----
  */
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Header from '../components/Header';
+
 import Home from '../pages/Home';
 import About from '../pages/About';
+
+function route() {
+  return (
+    <div>
+      <Route exact path="/home" component={Home} />
+      <Route path="/about" component={About} />
+    </div>
+  );
+}
 
 function BaseRoute() {
   return (
     <Router>
-      <div>
-        <Header />
-        <Route exact path="/" component={Home} />
-        <Route path="/about" component={About} />
-      </div>
+      <Header content={route()} />
     </Router>
   );
 }

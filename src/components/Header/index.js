@@ -9,17 +9,14 @@
  * -----
  */
 import React, { useState } from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {
   Layout,
   Menu,
-  Breadcrumb,
+  // Breadcrumb,
   Icon,
   Button,
 } from 'antd';
-
-import Home from '../../pages/Home';
-import About from '../../pages/About';
 
 import './index.less';
 
@@ -29,15 +26,16 @@ const { Header, Content, Sider } = Layout;
 const menuButtonClass = {
   lineHeight: '64px',
   height: '64px',
-  // backgroundColor: '#018E7B',
-  // borderColor: '#018E7B',
   fontSize: '1em',
   fontWeight: '500',
   float: 'right',
 };
 
-function BaseHeader() {
+function BaseHeader(props) {
   const [collapsed, setCollapsed] = useState(false);
+  // eslint-disable-next-line react/prop-types
+  const { content } = props;
+
   return (
     <Layout>
       <Header className="header">
@@ -85,49 +83,28 @@ function BaseHeader() {
           <Menu defaultSelectedKeys={['1']} mode="inline">
             <Menu.Item key="1">
               <Icon type="pie-chart" />
-              <span>Option 1</span>
+              <Link to="/home" style={{ display: 'inline' }}>统计</Link>
             </Menu.Item>
             <Menu.Item key="2">
               <Icon type="desktop" />
-              <span>Option 2</span>
+              <Link to="/about" style={{ display: 'inline' }}>设备</Link>
             </Menu.Item>
             <SubMenu
               key="sub1"
               title={(
                 <span>
                   <Icon type="user" />
-                  <span>User</span>
+                  <span>管理</span>
                 </span>
               )}
             >
-              <Menu.Item key="3">Tom</Menu.Item>
-              <Menu.Item key="4">Bill</Menu.Item>
-              <Menu.Item key="5">Alex</Menu.Item>
+              <Menu.Item key="3">用户</Menu.Item>
+              <Menu.Item key="4">日志</Menu.Item>
+              <Menu.Item key="5">设置</Menu.Item>
             </SubMenu>
-            <SubMenu
-              key="sub2"
-              title={(
-                <span>
-                  <Icon type="team" />
-                  <span>Team</span>
-                </span>
-              )}
-            >
-              <Menu.Item key="6">Team 1</Menu.Item>
-              <Menu.Item key="8">Team 2</Menu.Item>
-            </SubMenu>
-            <Menu.Item key="9">
-              <Icon type="file" />
-              <span>File</span>
-            </Menu.Item>
           </Menu>
         </Sider>
-        <Layout style={{ padding: '0 24px 24px' }}>
-          <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item>Home</Breadcrumb.Item>
-            <Breadcrumb.Item>List</Breadcrumb.Item>
-            <Breadcrumb.Item>App</Breadcrumb.Item>
-          </Breadcrumb>
+        <Layout style={{ padding: '24px' }}>
           <Content
             style={{
               background: '#fff',
@@ -136,7 +113,7 @@ function BaseHeader() {
               minHeight: 280,
             }}
           >
-            <Home></Home>
+            {content}
           </Content>
         </Layout>
       </Layout>
