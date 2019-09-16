@@ -18,8 +18,9 @@ import About from '../pages/About';
 function route() {
   return (
     <div>
+      <Route exact path="/" component={Home} />
       <Route exact path="/home" component={Home} />
-      <Route path="/about" component={About} />
+      <Route exact path="/about" component={About} />
     </div>
   );
 }

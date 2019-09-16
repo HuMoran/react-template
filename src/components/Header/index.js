@@ -83,11 +83,11 @@ function BaseHeader(props) {
           <Menu defaultSelectedKeys={['1']} mode="inline">
             <Menu.Item key="1">
               <Icon type="pie-chart" />
-              <Link to="/home" style={{ display: 'inline' }}>统计</Link>
+              <Link to="/home" style={{ display: 'inline' }}>NVR主机</Link>
             </Menu.Item>
             <Menu.Item key="2">
               <Icon type="desktop" />
-              <Link to="/about" style={{ display: 'inline' }}>设备</Link>
+              <Link to="/about" style={{ display: 'inline' }}>报警主机</Link>
             </Menu.Item>
             <SubMenu
               key="sub1"
