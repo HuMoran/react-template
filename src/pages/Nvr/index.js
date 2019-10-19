@@ -10,30 +10,12 @@
  */
 import React, { useState, useEffect } from 'react';
 
-import {
-  Table, Divider, Tag, Card,
-} from 'antd';
+import { Table, Divider, Tag, Card } from 'antd';
 
 import IPChan from './ipChan';
 import RecordCfg from './recordCfg';
 
 const { Column } = Table;
-
-// const data = [
-//   {
-//     key: '1',
-//     no: 1,
-//     name: '测试NVR主机',
-//     ip: '192.168.1.10',
-//     kind: 'NVR',
-//     status: '在线',
-//     brand: '海康',
-//     type: 'DS-8616N-8E',
-//     ipChanNum: 3,
-//     diskNum: 1,
-//     address: '深圳市罗湖区支行',
-//   },
-// ];
 
 function getRecordSchedule(timeSchedule) {
   return timeSchedule.reduce((r, e) => {
