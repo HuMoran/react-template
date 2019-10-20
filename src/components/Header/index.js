@@ -9,51 +9,49 @@
  * -----
  */
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 import {
   Layout,
   Menu,
-  // Breadcrumb,
   Icon,
-  Button,
+  // Button,
 } from 'antd';
 
 import './index.less';
 
-const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
-const menuButtonClass = {
-  lineHeight: '64px',
-  height: '64px',
-  fontSize: '1em',
-  fontWeight: '500',
-  float: 'right',
-};
+// const menuButtonClass = {
+//   lineHeight: '64px',
+//   height: '64px',
+//   fontSize: '1em',
+//   fontWeight: '500',
+//   float: 'right',
+// };
+
+function onClick({ key } = {}, history) {
+  history.push(`/${key}`);
+}
 
 function BaseHeader(props) {
   const [collapsed, setCollapsed] = useState(false);
-  // eslint-disable-next-line react/prop-types
   const { content } = props;
+  const history = useHistory();
 
   return (
     <Layout>
       <Header className="header">
         <span className="logo">
-          React Template Logo
+          LoRa-NB
         </span>
-        {/* 如果需要横向靠右菜单，打开下面注释 */}
-        {/* <Menu
-          theme="dark"
-          mode="horizontal"
-          defaultSelectedKeys={['2']}
-          style={{ lineHeight: '64px', float: 'right', background: '#018E7B' }}
-        >
-          <Menu.Item key="1">nav 1</Menu.Item>
-          <Menu.Item key="2">nav 2</Menu.Item>
-          <Menu.Item key="3">nav 3</Menu.Item>
-        </Menu> */}
-        <span>
+        <Icon
+          className="trigger"
+          type={collapsed ? 'menu-unfold' : 'menu-fold'}
+          onClick={() => setCollapsed(!collapsed)}
+        />
+        {/* <span>
           <Button
             type="primary"
             icon="logout"
@@ -63,45 +61,27 @@ function BaseHeader(props) {
           >
             退出
           </Button>
-          <Button
-            type="primary"
-            icon="user"
-            style={menuButtonClass}
-          >
-            温经理
-          </Button>
-        </span>
+        </span> */}
       </Header>
       <Layout>
         <Sider
-          // collapsedWidth={64} there has a bug
           theme="light"
+          breakpoint="md"
+          collapsedWidth={0}
+          trigger={null}
           collapsible
           collapsed={collapsed}
           onCollapse={() => setCollapsed(!collapsed)}
         >
-          <Menu defaultSelectedKeys={['1']} mode="inline">
-            <Menu.Item key="1">
-              <Icon type="pie-chart" />
-              <Link to="/nvr" style={{ display: 'inline' }}>NVR主机</Link>
+          <Menu defaultSelectedKeys={['home']} onClick={(e) => onClick(e, history)}>
+            <Menu.Item key="home">
+              <Icon type="dashboard" />
+              基站信息
             </Menu.Item>
-            <Menu.Item key="2">
-              <Icon type="desktop" />
-              <Link to="/alarm" style={{ display: 'inline' }}>报警主机</Link>
+            <Menu.Item key="history">
+              <Icon type="history" />
+              历史数据
             </Menu.Item>
-            <SubMenu
-              key="sub1"
-              title={(
-                <span>
-                  <Icon type="user" />
-                  <span>管理</span>
-                </span>
-              )}
-            >
-              <Menu.Item key="3">用户</Menu.Item>
-              <Menu.Item key="4">日志</Menu.Item>
-              <Menu.Item key="5">设置</Menu.Item>
-            </SubMenu>
           </Menu>
         </Sider>
         <Layout style={{ padding: '24px' }}>
@@ -120,5 +100,9 @@ function BaseHeader(props) {
     </Layout>
   );
 }
+
+BaseHeader.propTypes = {
+  content: PropTypes.element.isRequired,
+};
 
 export default BaseHeader;

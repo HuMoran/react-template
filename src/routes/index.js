@@ -12,15 +12,15 @@ import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Header from '../components/Header';
 
-import Nvr from '../pages/Nvr';
-import Alarm from '../pages/Alarm';
+import Home from '../pages/Home';
+import History from '../pages/History';
 
 function route() {
   return (
     <div>
-      <Route exact path="/" component={Nvr} />
-      <Route exact path="/nvr" component={Nvr} />
-      <Route exact path="/alarm" component={Alarm} />
+      <Route exact path="/" component={Home} />
+      <Route exact path="/home" component={Home} />
+      <Route exact path="/history" component={History} />
     </div>
   );
 }
